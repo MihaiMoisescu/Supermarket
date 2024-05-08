@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Administrator" Height="450" Width="800">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/background.png"/>
+        </Grid.Background>
+
     </Grid>
 </Window>
