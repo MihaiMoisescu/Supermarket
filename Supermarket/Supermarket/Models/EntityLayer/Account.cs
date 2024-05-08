@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Supermarket.Models
 {
-    public partial class Account
+    public partial class Account 
     {
         public Account()
         {

@@ -167,19 +167,35 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helper\BasePropertyChanged.cs" />
+    <Compile Include="Helper\RelayCommands.cs" />
+    <Compile Include="Models\BusinessLogicLayer\AccountBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\CategoryBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProducerBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProductBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ReceiptBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ReceiptItemsBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\StockBLL.cs" />
+    <Compile Include="ViewModels\AccountVM.cs" />
+    <Compile Include="ViewModels\CategoryVM.cs" />
+    <Compile Include="ViewModels\ProducerVM.cs" />
+    <Compile Include="ViewModels\ProductVM.cs" />
+    <Compile Include="ViewModels\ReceiptItemsVM.cs" />
+    <Compile Include="ViewModels\ReceiptVM.cs" />
+    <Compile Include="ViewModels\StockVM.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Producer.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Receipt.cs" />
-    <Compile Include="Models\ReceiptItems.cs" />
-    <Compile Include="Models\Stock.cs" />
+    <Compile Include="Models\EntityLayer\Account.cs" />
+    <Compile Include="Models\EntityLayer\Category.cs" />
+    <Compile Include="Models\EntityLayer\Producer.cs" />
+    <Compile Include="Models\EntityLayer\Product.cs" />
+    <Compile Include="Models\EntityLayer\Receipt.cs" />
+    <Compile Include="Models\EntityLayer\ReceiptItems.cs" />
+    <Compile Include="Models\EntityLayer\Stock.cs" />
     <Compile Include="DBContext\supermarketDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -207,6 +223,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SUPERMARKET %282%29.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
