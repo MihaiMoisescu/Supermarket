@@ -7,14 +7,14 @@ namespace Supermarket.Models
     {
         public Account()
         {
-/*            Receipt = new HashSet<Receipt>();*/
+            Receipt = new HashSet<Receipt>();
         }
 
         public int AccountId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-/*
-        public virtual ICollection<Receipt> Receipt { get; set; }*/
+
+        public virtual ICollection<Receipt> Receipt { get; set; }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Supermarket.Models;
 
-namespace Supermarket.Models
+namespace Supermarket.DBContext
 {
     public partial class supermarketDBContext : DbContext
     {
