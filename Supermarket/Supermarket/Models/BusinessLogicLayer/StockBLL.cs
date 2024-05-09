@@ -11,11 +11,11 @@ namespace Supermarket.Models.BusinessLogicLayer
     internal class StockBLL
     {
         private supermarketDBContext context = new supermarketDBContext();
-        public ObservableCollection<AccountBLL> StockList { get; set; }
+        public ObservableCollection<Stock> StockList { get; set; }
 
         public StockBLL()
         {
-            StockList = new ObservableCollection<AccountBLL>();
+            StockList = new ObservableCollection<Stock>();
 
         }
         public void AddMethod(object obj)

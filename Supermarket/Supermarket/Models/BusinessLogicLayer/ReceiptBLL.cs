@@ -11,11 +11,11 @@ namespace Supermarket.Models.BusinessLogicLayer
     internal class ReceiptBLL
     {
         private supermarketDBContext context = new supermarketDBContext();
-        public ObservableCollection<AccountBLL> ReceiptList { get; set; }
+        public ObservableCollection<Receipt> ReceiptList { get; set; }
 
         public ReceiptBLL()
         {
-            ReceiptList = new ObservableCollection<AccountBLL>();
+            ReceiptList = new ObservableCollection<Receipt>();
 
         }
         public void AddMethod(object obj)

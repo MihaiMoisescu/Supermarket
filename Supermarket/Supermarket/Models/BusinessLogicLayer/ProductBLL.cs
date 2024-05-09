@@ -11,11 +11,11 @@ namespace Supermarket.Models.BusinessLogicLayer
     internal class ProductBLL
     {
         private supermarketDBContext context = new supermarketDBContext();
-        public ObservableCollection<AccountBLL> ProductList { get; set; }
+        public ObservableCollection<Product> ProductList { get; set; }
 
         public ProductBLL()
         {
-            ProductList = new ObservableCollection<AccountBLL>();
+            ProductList = new ObservableCollection<Product>();
 
         }
         public void AddMethod(object obj)
