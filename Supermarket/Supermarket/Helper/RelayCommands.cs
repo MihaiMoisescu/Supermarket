@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WpfMVVMAgendaEF.Helpers
+namespace Supermarket.Helper
 {
-    class RelayCommand : ICommand
+   public class RelayCommand : ICommand
     {
         private Action<object> commandTask;
         private Predicate<object> canExecuteTask;

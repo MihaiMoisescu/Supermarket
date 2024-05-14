@@ -1,24 +1,29 @@
-﻿using Supermarket.DBContext;
+﻿using Microsoft.Win32;
 using Supermarket.Helper;
-using Supermarket.Models.BusinessLogicLayer;
-using Supermarket.Views;
+using Supermarket.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using WpfMVVMAgendaEF.Helpers;
+using System.Windows;
+using Supermarket.Views;
 
 namespace Supermarket.ViewModels
 {
     internal class LoginVM :BasePropertyChanged
     {
-        private AccountBLL AccountBLL;
+        private AccountBLL _accountBLL;
         private string _username;
-        private string Username
+        private string _password;
+
+        public LoginVM()
+        {
+            _accountBLL = new AccountBLL(new SupermarketDBEntities());
+
+        }
+        public string Username
         {
             get
             {
@@ -27,9 +32,24 @@ namespace Supermarket.ViewModels
             set
             {
                 _username = value;
-                NotifyPropertyChanged("Username");
+                NotifyPropertyChanged(nameof(Username));
             }
         }
+        public string Password
+        {
+            get
+            {
+                return _password;
+            }
+            set
+            {
+                _password = value;
+                NotifyPropertyChanged(nameof(Password));
+            }
+        }
+
+        #region Commands
+
         private ICommand createAccount;
         public ICommand CreateAccount
         {
@@ -42,28 +62,29 @@ namespace Supermarket.ViewModels
         }
         public void ToRegister(object obj)
         {
-            Register register= new Register();
+            RegisterView register = new RegisterView();
             register.ShowDialog();
         }
         private ICommand connect;
-        
+
         public void Connect(object obj)
         {
-/*            int ok = 0;
-            foreach(var account in accounts)
+            var account = _accountBLL.VerifyUser(Username, Password);
+            if (account != null)
             {
-                if (Username == account.Username)
-                    ok = 1;
-                
-            }
-            if(ok==1)
-            {
-                MessageBox.Show("merge");
+                if (account.Role == "Administrator")
+                {
+                    AdministratorView administrator = new AdministratorView();
+                    administrator.ShowDialog();
+                }
+                else if (account.Role == "Casier")
+                {
+                    CasherView casher = new CasherView();
+                    casher.ShowDialog();
+                }
             }
             else
-            {
-                MessageBox.Show("Nu merge");
-            }*/
+                MessageBox.Show("Username or password inncorect.", "Autentification", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         public ICommand Login
         {
@@ -74,7 +95,6 @@ namespace Supermarket.ViewModels
                 return connect;
             }
         }
-
+        #endregion
     }
-
 }

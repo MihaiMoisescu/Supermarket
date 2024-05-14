@@ -1,11 +1,11 @@
-﻿using Supermarket.Views;
+﻿using Supermarket.Helper;
+using Supermarket.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using WpfMVVMAgendaEF.Helpers;
 
 namespace Supermarket.ViewModels
 {
@@ -15,10 +15,10 @@ namespace Supermarket.ViewModels
 
         public void StartGame(object obj)
         {
-            Login login = new Login();
+            LoginView login = new LoginView();
             login.ShowDialog();
-            
-            
+
+
         }
         public ICommand StartCommand
         {

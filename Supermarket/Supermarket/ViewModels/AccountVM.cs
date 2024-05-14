@@ -1,11 +1,12 @@
-﻿using Supermarket.Models.BusinessLogicLayer;
+﻿using Supermarket.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using WpfMVVMAgendaEF.Helpers;
 
 namespace Supermarket.ViewModels
 {
@@ -15,41 +16,22 @@ namespace Supermarket.ViewModels
 
         public AccountVM()
         {
-            _accountBLL = new AccountBLL();
+            _accountBLL = new AccountBLL(new SupermarketDBEntities());
+
+            AccountList = _accountBLL.GetAllAccounts();
         }
+
+
+        public ObservableCollection<Account> AccountList
+        {
+            get => _accountBLL.AccountsList;
+            set => _accountBLL.AccountsList = value;
+        }
+
+
+
         #region Commands
-        private ICommand addCommand;
-        public ICommand AddCommand
-        {
-            get
-            {
-                if (addCommand == null)
-                {
-                    addCommand = new RelayCommand(_accountBLL.AddMethod);
-                }
-                return addCommand;
-            }
-        }
-        private ICommand updateCommand;
-        public ICommand UpdateCommand
-        {
-            get
-            {
-                if (updateCommand == null)
-                    updateCommand = new RelayCommand(_accountBLL.UpdateMethod);
-                return updateCommand;
-            }
-        }
-        private ICommand deleteCommand;
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                if (deleteCommand == null)
-                    deleteCommand = new RelayCommand(_accountBLL.DeleteMethod);
-                return deleteCommand;
-            }
-        }
+
         #endregion
     }
 }
