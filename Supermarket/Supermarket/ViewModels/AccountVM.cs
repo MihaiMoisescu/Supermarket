@@ -17,7 +17,6 @@ namespace Supermarket.ViewModels
         public AccountVM()
         {
             _accountBLL = new AccountBLL(new SupermarketDBEntities());
-
             AccountList = _accountBLL.GetAllAccounts();
         }
 

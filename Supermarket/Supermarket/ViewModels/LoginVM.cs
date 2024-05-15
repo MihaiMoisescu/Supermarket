@@ -72,15 +72,23 @@ namespace Supermarket.ViewModels
             var account = _accountBLL.VerifyUser(Username, Password);
             if (account != null)
             {
-                if (account.Role == "Administrator")
+                if (account.IsActive == true)
                 {
-                    AdministratorView administrator = new AdministratorView();
-                    administrator.ShowDialog();
+                    if (account.Role == "Administrator")
+                    {
+                        AdministratorView administrator = new AdministratorView();
+                        administrator.ShowDialog();
+                    }
+                    else if (account.Role == "Casier")
+                    {
+                        CasherView casher = new CasherView();
+                        casher.ShowDialog();
+                    }
                 }
-                else if (account.Role == "Casier")
+                else
                 {
-                    CasherView casher = new CasherView();
-                    casher.ShowDialog();
+                    MessageBox.Show("Account is inactive.", "Autentification", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 }
             }
             else

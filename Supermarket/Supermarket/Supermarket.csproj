@@ -70,9 +70,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\AccountConvert.cs" />
+    <Compile Include="ViewModels\RegisterVM.cs" />
+    <Compile Include="Views\AccountsView.xaml.cs">
+      <DependentUpon>AccountsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProducersView.xaml.cs">
+      <DependentUpon>ProducersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductsView.xaml.cs">
+      <DependentUpon>ProductsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StocksView.xaml.cs">
+      <DependentUpon>StocksView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AccountsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AdministratorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,9 +131,21 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ProducersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ProductsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StocksView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

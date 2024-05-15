@@ -1,12 +1,7 @@
 ﻿using Microsoft.Xaml.Behaviors;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows;
-using Supermarket.ViewModels;
+using System.Windows.Controls;
 
 namespace Supermarket.Helper
 {
@@ -26,9 +21,12 @@ namespace Supermarket.Helper
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (AssociatedObject.DataContext is LoginVM viewModel)
+            var dataContext = AssociatedObject.DataContext;
+            var passwordProperty = dataContext?.GetType().GetProperty("Password");
+
+            if (passwordProperty != null && passwordProperty.PropertyType == typeof(string))
             {
-                viewModel.Password = AssociatedObject.Password;
+                passwordProperty.SetValue(dataContext, AssociatedObject.Password);
             }
         }
     }
