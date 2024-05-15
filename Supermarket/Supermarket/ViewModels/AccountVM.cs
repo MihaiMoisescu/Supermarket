@@ -1,4 +1,5 @@
-﻿using Supermarket.Models;
+﻿using Supermarket.Helper;
+using Supermarket.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Supermarket.ViewModels
 {
@@ -30,6 +32,19 @@ namespace Supermarket.ViewModels
 
 
         #region Commands
+        private ICommand updateAccount;
+
+        public ICommand UpdateAccount
+        {
+            get
+            {
+                if(updateAccount == null)
+                {
+                    updateAccount = new RelayCommand(_accountBLL.ModifyPerson);
+                }    
+                return updateAccount;
+            }
+        }
 
         #endregion
     }

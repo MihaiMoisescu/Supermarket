@@ -30,7 +30,7 @@
         </Button>
 
         <Button Content="Delete" HorizontalAlignment="Left" Margin="454,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" RenderTransformOrigin="0.568,0.543"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="245,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="245,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Command="{Binding UpdateAccount}" CommandParameter="{Binding ElementName=personsGrid, Path=SelectedItem}"/>
         <TextBlock HorizontalAlignment="Left" Margin="37,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74"><Run Text="Username"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="37,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74" RenderTransformOrigin="0.459,2.13"><Run Text="Role"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="37,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74" Text="Password"/>
@@ -47,6 +47,8 @@
                 <DataGridTextColumn Header="Username" Binding="{Binding Username}" />
                 <DataGridTextColumn Header="Password" Binding="{Binding Password}" />
                 <DataGridTextColumn Header="Role" Binding="{Binding Role}" />
+                <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}" />
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

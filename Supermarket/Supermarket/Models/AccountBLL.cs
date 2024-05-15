@@ -55,5 +55,11 @@ namespace Supermarket.Models
                 AccountsList.Add(account);
             }
         }
+        public void ModifyPerson(object obj)
+        {
+            Account acc=obj as Account;
+            context.ModifyAccount(acc.AccountID, acc.Username, acc.Password, acc.Role, acc.IsActive);
+            context.SaveChanges();
+        }
     }
 }

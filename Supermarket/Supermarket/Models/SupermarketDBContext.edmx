@@ -147,6 +147,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DeleteAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountID" Type="int" Mode="In" />
+          <Parameter Name="isActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ModifyAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountID" Type="int" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="role" Type="varchar" Mode="In" />
+          <Parameter Name="isActive" Type="bit" Mode="In" />
+        </Function>
         <EntityContainer Name="SupermarketDBModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -371,6 +382,17 @@
             <End Role="Receipt" EntitySet="Receipts" />
             <End Role="ReceiptItems" EntitySet="ReceiptItems" />
           </AssociationSet>
+          <FunctionImport Name="DeleteAccount">
+            <Parameter Name="accountID" Mode="In" Type="Int32" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyAccount">
+            <Parameter Name="accountID" Mode="In" Type="Int32" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="String" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -454,6 +476,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteAccount" FunctionName="SupermarketDBModel.Store.DeleteAccount" />
+          <FunctionImportMapping FunctionImportName="ModifyAccount" FunctionName="SupermarketDBModel.Store.ModifyAccount" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

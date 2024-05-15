@@ -71,6 +71,42 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\AccountConvert.cs" />
+    <Compile Include="Models\Account.cs">
+      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Producer.cs">
+      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Receipt.cs">
+      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReceiptItem.cs">
+      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stock.cs">
+      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupermarketDBContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupermarketDBContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupermarketDBContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupermarketDBContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupermarketDBContext.edmx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\RegisterVM.cs" />
     <Compile Include="Views\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
@@ -149,43 +185,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Account.cs">
-      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountBLL.cs" />
-    <Compile Include="Models\Category.cs">
-      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Producer.cs">
-      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Receipt.cs">
-      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ReceiptItem.cs">
-      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Stock.cs">
-      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SupermarketDBContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SupermarketDBContext.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SupermarketDBContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SupermarketDBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SupermarketDBContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SupermarketDBContext.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -220,16 +220,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\SupermarketDBContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SupermarketDBContext.edmx</DependentUpon>
-      <LastGenOutput>SupermarketDBContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\SupermarketDBContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SupermarketDBContext.edmx</DependentUpon>
-      <LastGenOutput>SupermarketDBContext.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\adm.png" />
     <Resource Include="Resources\background.png" />
     <Resource Include="Resources\create.png" />
@@ -240,7 +230,18 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Models\SupermarketDBContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SupermarketDBContext.edmx</DependentUpon>
+      <LastGenOutput>SupermarketDBContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SupermarketDBContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SupermarketDBContext.edmx</DependentUpon>
+      <LastGenOutput>SupermarketDBContext.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
