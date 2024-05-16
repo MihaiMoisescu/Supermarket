@@ -5,28 +5,29 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Supermarket.Converters
 {
-    class AccountConvert : IMultiValueConverter
+    internal class ProductConvert : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            bool isActive=false;
-            if (values[3].ToString() != null) {
+            bool isActive = false;
+            if (values[3].ToString() != null)
+            {
                 if (values[3].ToString() == "True")
                     isActive = true;
                 else
                     isActive = false;
-                    }
-            return new Account()
+            }
+            return new Product()
             {
-                Username = values[0].ToString(),
-                Password = values[1].ToString(),
-                Role = values[2].ToString(),
-                IsActive = isActive
+                Name = values[0].ToString(),
+                Barcode = values[1].ToString(),
+                IsActive = isActive,
+                CategoryID = int.Parse(values[3].ToString()),
+                ProducerID= int.Parse(values[4].ToString())
             };
         }
 

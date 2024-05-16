@@ -3,10 +3,49 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Supermarket.Views"
+        xmlns:local="clr-namespace:Supermarket.ViewModels"
+        xmlns:localConverter="clr-namespace:Supermarket.Converters"
+
         mc:Ignorable="d"
-        Title="ProducersView" Height="450" Width="800">
+        Title="ProducersView" Height="446" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:ProducersVM/>
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.Resources>
+            <localConverter:ProducerConvert x:Key="producerConvert"/>
+        </Grid.Resources>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/background.png"/>
+        </Grid.Background>
+        <Border Background="#FF7ED957" HorizontalAlignment="Left" Height="96" Margin="19,10,0,0" VerticalAlignment="Top" Width="627" CornerRadius="20"/>
+        <Button Content="ADD" HorizontalAlignment="Left" Margin="37,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Command="{Binding AddProducer}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource producerConvert}">
+                    <Binding ElementName="txtName" Path="Text"/>
+                    <Binding ElementName="txtCountry" Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="454,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" RenderTransformOrigin="0.568,0.543" Command="{Binding DeleteProducer}" CommandParameter="{Binding ElementName=producerGrid, Path=SelectedItem}" />
+        <Button Content="Update" HorizontalAlignment="Left" Margin="245,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Command="{Binding UpdateProducer}" CommandParameter="{Binding ElementName=producerGrid, Path=SelectedItem}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="37,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74" Text="Name"/>
+        <TextBlock HorizontalAlignment="Left" Margin="37,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74" Text="Country"/>
+        <TextBox Name="txtName" HorizontalAlignment="Left" Margin="110,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
+             Text="{Binding ElementName=producerGrid, Path=SelectedItem.Name,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Name="txtCountry" HorizontalAlignment="Left" Margin="110,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
+              Text="{Binding ElementName=producerGrid, Path=SelectedItem.Country,UpdateSourceTrigger=PropertyChanged}"/>
+        <DataGrid Name="producerGrid"  Margin="37,226,259,21" AutoGenerateColumns="False"
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ProducersList}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ProducerID}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Country" Binding="{Binding Country}" />
+                <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Left" Margin="37,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="635" FontFamily="Comic Sans MS" FontSize="28" Foreground="#FFFB0A0A" FontWeight="Bold"/>
     </Grid>
 </Window>

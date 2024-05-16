@@ -23,5 +23,6 @@ namespace Supermarket.Views
         {
             InitializeComponent();
         }
+
     }
 }

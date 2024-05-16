@@ -50,7 +50,7 @@ namespace Supermarket.ViewModels
 
         public RegisterVM()
         {
-            _accountBLL = new AccountBLL(new SupermarketDBEntities());
+            _accountBLL = new AccountBLL();
         }
 
         private ICommand _createAccount;
@@ -61,11 +61,10 @@ namespace Supermarket.ViewModels
             {
                 MessageBox.Show("Username already exists.", "Register", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            else
             {
                 _accountBLL.AddMethod(Username, Password, Role);
                 MessageBox.Show("Register successfully", "Register", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
             }
 
         }

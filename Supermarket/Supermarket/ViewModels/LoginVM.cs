@@ -20,7 +20,7 @@ namespace Supermarket.ViewModels
 
         public LoginVM()
         {
-            _accountBLL = new AccountBLL(new SupermarketDBEntities());
+            _accountBLL = new AccountBLL();
 
         }
         public string Username

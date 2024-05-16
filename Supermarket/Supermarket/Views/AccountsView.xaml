@@ -12,35 +12,36 @@
     </Window.DataContext>
     <Grid>
         <Grid.Resources>
-            <localConverter:AccountConvert x:Key="personConvert" />
+            <localConverter:AccountConvert x:Key="accountConvert" />
         </Grid.Resources>
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/background.png"/>
         </Grid.Background>
         <Border Background="#FF7ED957" HorizontalAlignment="Left" Height="96" Margin="19,10,0,0" VerticalAlignment="Top" Width="627" CornerRadius="20"/>
-        <Button Content="ADD" HorizontalAlignment="Left" Margin="37,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24">
+        <Button Content="ADD" HorizontalAlignment="Left" Margin="37,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Command="{Binding AddAccount}">
             <Button.CommandParameter>
-                <MultiBinding Converter="{StaticResource personConvert}">
+                <MultiBinding Converter="{StaticResource accountConvert}">
                     <Binding ElementName="txtUser" Path="Text"/>
                     <Binding ElementName="txtPassword" Path="Text"/>
                     <Binding ElementName="txtRole" Path="Text"/>
+                    <Binding ElementName="accountGrid" Path="SelectedItem.Role"/>
 
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
 
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="454,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" RenderTransformOrigin="0.568,0.543"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="245,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Command="{Binding UpdateAccount}" CommandParameter="{Binding ElementName=personsGrid, Path=SelectedItem}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="37,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74"><Run Text="Username"/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="37,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74" RenderTransformOrigin="0.459,2.13"><Run Text="Role"/><LineBreak/><Run/></TextBlock>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="454,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" RenderTransformOrigin="0.568,0.543" Command="{Binding DeleteAccount}" CommandParameter="{Binding ElementName=accountGrid, Path=SelectedItem}" />
+        <Button Content="Update" HorizontalAlignment="Left" Margin="245,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Command="{Binding UpdateAccount}" CommandParameter="{Binding ElementName=accountGrid, Path=SelectedItem}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="37,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74"><Run Text="Username"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="37,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74" RenderTransformOrigin="0.459,2.13" Text="Role"></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="37,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74" Text="Password"/>
         <TextBox Name="txtUser" HorizontalAlignment="Left" Margin="110,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
-                Text="{Binding ElementName=personsGrid, Path=SelectedItem.Username,UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox Name="txtRole" HorizontalAlignment="Left" Margin="110,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="30"
-                Text="{Binding ElementName=personsGrid, Path=SelectedItem.Role,UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding ElementName=accountGrid, Path=SelectedItem.Username,UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Name="txtPassword" HorizontalAlignment="Left" Margin="110,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
-                 Text="{Binding ElementName=personsGrid, Path=SelectedItem.Password,UpdateSourceTrigger=PropertyChanged}"/>
-        <DataGrid Name="personsGrid"  Margin="10,222,286,25" AutoGenerateColumns="False"
+                 Text="{Binding ElementName=accountGrid, Path=SelectedItem.Password,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Name="txtRole" HorizontalAlignment="Left" Margin="110,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="30"
+                Text="{Binding ElementName=accountGrid, Path=SelectedItem.Role,UpdateSourceTrigger=PropertyChanged}"/>
+        <DataGrid Name="accountGrid"  Margin="10,222,286,25" AutoGenerateColumns="False"
            ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding AccountList}" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding AccountID}" />
@@ -51,5 +52,6 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Left" Margin="347,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="79" Width="315" FontFamily="Comic Sans MS" FontSize="30" Foreground="#FFFB0A0A" FontWeight="Bold"/>
     </Grid>
 </Window>
