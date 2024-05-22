@@ -91,6 +91,9 @@
     <Compile Include="Models\GetAllProducts_Result.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetProductsFromProducer_Result.cs">
+      <DependentUpon>SupermarketDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Producer.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
@@ -123,6 +126,7 @@
     </Compile>
     <Compile Include="ViewModels\MoreOperationsVM.cs" />
     <Compile Include="ViewModels\ProducersVM.cs" />
+    <Compile Include="ViewModels\ProductsProducersVM.cs" />
     <Compile Include="ViewModels\ProductsVM.cs" />
     <Compile Include="ViewModels\RegisterVM.cs" />
     <Compile Include="ViewModels\StocksVM.cs" />
@@ -285,6 +289,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\options.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Models\SupermarketDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SupermarketDB.edmx</DependentUpon>
@@ -295,7 +302,6 @@
       <DependentUpon>SupermarketDB.edmx</DependentUpon>
       <LastGenOutput>SupermarketDB.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\options.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

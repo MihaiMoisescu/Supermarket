@@ -102,6 +102,16 @@ namespace Supermarket.Models
                 ErrorMessage = "Campurile nu pot fi nule!";
             }
         }
+        public ObservableCollection<GetProductsFromProducer_Result> GetProductsFromProducer(int producerID,int categoryID) 
+        {
+            ObservableCollection<GetProductsFromProducer_Result> results=new ObservableCollection<GetProductsFromProducer_Result>();
+            var products=context.GetProductsFromProducer(producerID, categoryID).ToList();
+            foreach( var product in products )
+            {
+                results.Add(product);
+            }
+            return results;
+        }
 
     }
 }

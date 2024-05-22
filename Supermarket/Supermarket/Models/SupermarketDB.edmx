@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SupermarketDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SupermarketDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountID" />
@@ -196,6 +196,10 @@
           <Parameter Name="isActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="GetAllProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetProductsFromProducer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="producerID" Type="int" Mode="In" />
+          <Parameter Name="categoryID" Type="int" Mode="In" />
+        </Function>
         <Function Name="ModifyAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountID" Type="int" Mode="In" />
           <Parameter Name="username" Type="varchar" Mode="In" />
@@ -254,7 +258,8 @@
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SupermarketDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -493,6 +498,10 @@
             <Parameter Name="isActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="GetAllProducts" ReturnType="Collection(SupermarketDBModel.GetAllProducts_Result)" />
+          <FunctionImport Name="GetProductsFromProducer" ReturnType="Collection(SupermarketDBModel.GetProductsFromProducer_Result)">
+            <Parameter Name="producerID" Mode="In" Type="Int32" />
+            <Parameter Name="categoryID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="ModifyAccount">
             <Parameter Name="accountID" Mode="In" Type="Int32" />
             <Parameter Name="username" Mode="In" Type="String" />
@@ -526,6 +535,11 @@
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
           <Property Type="Int32" Name="CategoryID" Nullable="false" />
           <Property Type="Int32" Name="ProducerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetProductsFromProducer_Result">
+          <Property Type="String" Name="ProducerName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -626,6 +640,15 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="ProducerID" ColumnName="ProducerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetProductsFromProducer" FunctionName="SupermarketDBModel.Store.GetProductsFromProducer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SupermarketDBModel.GetProductsFromProducer_Result">
+                <ScalarProperty Name="ProducerName" ColumnName="ProducerName" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
