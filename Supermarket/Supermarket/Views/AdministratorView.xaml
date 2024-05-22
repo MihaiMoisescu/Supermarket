@@ -18,6 +18,6 @@
         <Button Command="{Binding ProductsCommand}" Content="Products" HorizontalAlignment="Center" Margin="0,163,0,0" VerticalAlignment="Top" Height="47" Width="236" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
         <Button Command="{Binding ProducersCommand}" Content="Producers" HorizontalAlignment="Center" Margin="0,215,0,0" VerticalAlignment="Top" Height="47" Width="236" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
         <Button Command="{Binding StocksCommand}" Content="Stocks" HorizontalAlignment="Center" Margin="0,267,0,0" VerticalAlignment="Top" Height="47" Width="236" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
-        <Button Command="{Binding }" Content="Receipts" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top" Height="47" Width="236" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
+        <Button Command="{Binding MoreOptionsCommand}" Content="More Options" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top" Height="47" Width="236" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24"  />
     </Grid>
 </Window>

@@ -13,21 +13,32 @@ namespace Supermarket.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            bool isActive = false;
-            if (values[3].ToString() != null)
+            if (values == null || values.Length < 4)
+                return null;
+
+            string name = values[0]?.ToString();
+            string barcode = values[1]?.ToString();
+            string categoryIDString = values[2]?.ToString();
+            string producerIDString = values[3]?.ToString();
+
+            int categoryID;
+            int producerID;
+
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(barcode))
+                return null;
+
+            bool isCategoryIDParsed = int.TryParse(categoryIDString, out categoryID);
+            bool isProducerIDParsed = int.TryParse(producerIDString, out producerID);
+            if (!isCategoryIDParsed  && !isProducerIDParsed)
             {
-                if (values[3].ToString() == "True")
-                    isActive = true;
-                else
-                    isActive = false;
+                return null;
             }
             return new Product()
             {
-                Name = values[0].ToString(),
-                Barcode = values[1].ToString(),
-                IsActive = isActive,
-                CategoryID = int.Parse(values[3].ToString()),
-                ProducerID= int.Parse(values[4].ToString())
+                Name = name,
+                Barcode = barcode,
+                ProducerID = producerID,
+                CategoryID = categoryID
             };
         }
 

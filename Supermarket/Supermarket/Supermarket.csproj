@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -73,9 +74,17 @@
     <Compile Include="Converters\AccountConvert.cs" />
     <Compile Include="Converters\ProducerConvert.cs" />
     <Compile Include="Converters\ProductConvert.cs" />
+    <Compile Include="Converters\StockConvert.cs" />
+    <Compile Include="Helper\Functions.cs" />
+    <Compile Include="Helper\UpdateProductComboboxes.cs" />
+    <Compile Include="Helper\UpdateStocksComboboxes.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BusinessLogicLayer\CategoryBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\StockBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProducerBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProductsBLL.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
@@ -85,11 +94,9 @@
     <Compile Include="Models\Producer.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BusinessLogicLayer\ProducerBLL.cs" />
     <Compile Include="Models\Product.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BusinessLogicLayer\ProductsBLL.cs" />
     <Compile Include="Models\Receipt.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
@@ -117,6 +124,8 @@
     <Compile Include="ViewModels\ProducersVM.cs" />
     <Compile Include="ViewModels\ProductsVM.cs" />
     <Compile Include="ViewModels\RegisterVM.cs" />
+    <Compile Include="ViewModels\StocksVM.cs" />
+    <Compile Include="ViewModels\UpdatePriceStockVM.cs" />
     <Compile Include="Views\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
     </Compile>
@@ -131,6 +140,9 @@
     </Compile>
     <Compile Include="Views\StocksView.xaml.cs">
       <DependentUpon>StocksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdatePriceStockView.xaml.cs">
+      <DependentUpon>UpdatePriceStockView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AccountsView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -191,6 +203,10 @@
     <Page Include="Views\StocksView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdatePriceStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -56,44 +56,6 @@ namespace Supermarket.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddAccount", usernameParameter, passwordParameter, roleParameter, isActiveParameter, accID);
         }
     
-        public virtual int DeleteAccount(Nullable<int> accountID, Nullable<bool> isActive)
-        {
-            var accountIDParameter = accountID.HasValue ?
-                new ObjectParameter("accountID", accountID) :
-                new ObjectParameter("accountID", typeof(int));
-    
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("isActive", isActive) :
-                new ObjectParameter("isActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteAccount", accountIDParameter, isActiveParameter);
-        }
-    
-        public virtual int ModifyAccount(Nullable<int> accountID, string username, string password, string role, Nullable<bool> isActive)
-        {
-            var accountIDParameter = accountID.HasValue ?
-                new ObjectParameter("accountID", accountID) :
-                new ObjectParameter("accountID", typeof(int));
-    
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(string));
-    
-            var roleParameter = role != null ?
-                new ObjectParameter("role", role) :
-                new ObjectParameter("role", typeof(string));
-    
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("isActive", isActive) :
-                new ObjectParameter("isActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyAccount", accountIDParameter, usernameParameter, passwordParameter, roleParameter, isActiveParameter);
-        }
-    
         public virtual int AddProducer(string name, string country, Nullable<bool> isActive, ObjectParameter producerID)
         {
             var nameParameter = name != null ?
@@ -109,40 +71,6 @@ namespace Supermarket.Models
                 new ObjectParameter("isActive", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddProducer", nameParameter, countryParameter, isActiveParameter, producerID);
-        }
-    
-        public virtual int DeleteProducer(Nullable<int> producerID, Nullable<bool> isActive)
-        {
-            var producerIDParameter = producerID.HasValue ?
-                new ObjectParameter("producerID", producerID) :
-                new ObjectParameter("producerID", typeof(int));
-    
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("isActive", isActive) :
-                new ObjectParameter("isActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProducer", producerIDParameter, isActiveParameter);
-        }
-    
-        public virtual int ModifyProducer(Nullable<int> producerID, string name, string country, Nullable<bool> isActive)
-        {
-            var producerIDParameter = producerID.HasValue ?
-                new ObjectParameter("producerID", producerID) :
-                new ObjectParameter("producerID", typeof(int));
-    
-            var nameParameter = name != null ?
-                new ObjectParameter("name", name) :
-                new ObjectParameter("name", typeof(string));
-    
-            var countryParameter = country != null ?
-                new ObjectParameter("country", country) :
-                new ObjectParameter("country", typeof(string));
-    
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("isActive", isActive) :
-                new ObjectParameter("isActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyProducer", producerIDParameter, nameParameter, countryParameter, isActiveParameter);
         }
     
         public virtual int AddProduct(string name, string barcode, Nullable<bool> isActive, Nullable<int> categoryID, Nullable<int> producerID, ObjectParameter productID)
@@ -170,6 +98,69 @@ namespace Supermarket.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddProduct", nameParameter, barcodeParameter, isActiveParameter, categoryIDParameter, producerIDParameter, productID);
         }
     
+        public virtual int AddStock(Nullable<int> productID, Nullable<int> quantity, Nullable<bool> isActive, string unit, Nullable<System.DateTime> supplydate, Nullable<System.DateTime> expirationdate, Nullable<decimal> purchasePrice, Nullable<decimal> sellingPrice, ObjectParameter stockid)
+        {
+            var productIDParameter = productID.HasValue ?
+                new ObjectParameter("productID", productID) :
+                new ObjectParameter("productID", typeof(int));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("quantity", quantity) :
+                new ObjectParameter("quantity", typeof(int));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            var unitParameter = unit != null ?
+                new ObjectParameter("unit", unit) :
+                new ObjectParameter("unit", typeof(string));
+    
+            var supplydateParameter = supplydate.HasValue ?
+                new ObjectParameter("supplydate", supplydate) :
+                new ObjectParameter("supplydate", typeof(System.DateTime));
+    
+            var expirationdateParameter = expirationdate.HasValue ?
+                new ObjectParameter("expirationdate", expirationdate) :
+                new ObjectParameter("expirationdate", typeof(System.DateTime));
+    
+            var purchasePriceParameter = purchasePrice.HasValue ?
+                new ObjectParameter("purchasePrice", purchasePrice) :
+                new ObjectParameter("purchasePrice", typeof(decimal));
+    
+            var sellingPriceParameter = sellingPrice.HasValue ?
+                new ObjectParameter("sellingPrice", sellingPrice) :
+                new ObjectParameter("sellingPrice", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddStock", productIDParameter, quantityParameter, isActiveParameter, unitParameter, supplydateParameter, expirationdateParameter, purchasePriceParameter, sellingPriceParameter, stockid);
+        }
+    
+        public virtual int DeleteAccount(Nullable<int> accountID, Nullable<bool> isActive)
+        {
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("accountID", accountID) :
+                new ObjectParameter("accountID", typeof(int));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteAccount", accountIDParameter, isActiveParameter);
+        }
+    
+        public virtual int DeleteProducer(Nullable<int> producerID, Nullable<bool> isActive)
+        {
+            var producerIDParameter = producerID.HasValue ?
+                new ObjectParameter("producerID", producerID) :
+                new ObjectParameter("producerID", typeof(int));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProducer", producerIDParameter, isActiveParameter);
+        }
+    
         public virtual int DeleteProduct(Nullable<int> productID, Nullable<bool> isActive)
         {
             var productIDParameter = productID.HasValue ?
@@ -183,9 +174,68 @@ namespace Supermarket.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProduct", productIDParameter, isActiveParameter);
         }
     
+        public virtual int DeleteStock(Nullable<int> stockID, Nullable<bool> isActive)
+        {
+            var stockIDParameter = stockID.HasValue ?
+                new ObjectParameter("stockID", stockID) :
+                new ObjectParameter("stockID", typeof(int));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteStock", stockIDParameter, isActiveParameter);
+        }
+    
         public virtual ObjectResult<GetAllProducts_Result> GetAllProducts()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllProducts_Result>("GetAllProducts");
+        }
+    
+        public virtual int ModifyAccount(Nullable<int> accountID, string username, string password, string role, Nullable<bool> isActive)
+        {
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("accountID", accountID) :
+                new ObjectParameter("accountID", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var roleParameter = role != null ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(string));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyAccount", accountIDParameter, usernameParameter, passwordParameter, roleParameter, isActiveParameter);
+        }
+    
+        public virtual int ModifyProducer(Nullable<int> producerID, string name, string country, Nullable<bool> isActive)
+        {
+            var producerIDParameter = producerID.HasValue ?
+                new ObjectParameter("producerID", producerID) :
+                new ObjectParameter("producerID", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var countryParameter = country != null ?
+                new ObjectParameter("country", country) :
+                new ObjectParameter("country", typeof(string));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyProducer", producerIDParameter, nameParameter, countryParameter, isActiveParameter);
         }
     
         public virtual int ModifyProduct(Nullable<int> productID, string name, string barcode, Nullable<bool> isActive, Nullable<int> categoryID, Nullable<int> producerID)
@@ -215,6 +265,19 @@ namespace Supermarket.Models
                 new ObjectParameter("ProducerID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyProduct", productIDParameter, nameParameter, barcodeParameter, isActiveParameter, categoryIDParameter, producerIDParameter);
+        }
+    
+        public virtual int ModifyStock(Nullable<int> stockID, Nullable<decimal> sellingPrice)
+        {
+            var stockIDParameter = stockID.HasValue ?
+                new ObjectParameter("stockID", stockID) :
+                new ObjectParameter("stockID", typeof(int));
+    
+            var sellingPriceParameter = sellingPrice.HasValue ?
+                new ObjectParameter("sellingPrice", sellingPrice) :
+                new ObjectParameter("sellingPrice", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyStock", stockIDParameter, sellingPriceParameter);
         }
     }
 }

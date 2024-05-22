@@ -43,7 +43,6 @@
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Country" Binding="{Binding Country}" />
                 <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}" />
-
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Left" Margin="37,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="635" FontFamily="Comic Sans MS" FontSize="28" Foreground="#FFFB0A0A" FontWeight="Bold"/>

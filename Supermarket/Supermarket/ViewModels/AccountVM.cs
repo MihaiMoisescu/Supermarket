@@ -67,6 +67,7 @@ namespace Supermarket.ViewModels
         {
             _accountBLL.DeleteAccount(obj);
             ErrorMessage=_accountBLL.ErrorMessage;
+            AccountList = _accountBLL.GetAllAccounts();
 
         }
         public ICommand DeleteAccount

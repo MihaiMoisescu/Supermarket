@@ -72,7 +72,7 @@
           <Property Name="Unit" Type="varchar" MaxLength="50" />
           <Property Name="DateOfSupply" Type="date" />
           <Property Name="ExpirationDate" Type="date" />
-          <Property Name="Purchase_price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="10" Scale="2" />
           <Property Name="SellingPrice" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <Association Name="fk_product_category">
@@ -168,6 +168,17 @@
           <Parameter Name="ProducerID" Type="int" Mode="In" />
           <Parameter Name="ProductID" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="AddStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productID" Type="int" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="isActive" Type="bit" Mode="In" />
+          <Parameter Name="unit" Type="varchar" Mode="In" />
+          <Parameter Name="supplydate" Type="date" Mode="In" />
+          <Parameter Name="expirationdate" Type="date" Mode="In" />
+          <Parameter Name="purchasePrice" Type="decimal" Mode="In" />
+          <Parameter Name="sellingPrice" Type="decimal" Mode="In" />
+          <Parameter Name="stockid" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="DeleteAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountID" Type="int" Mode="In" />
           <Parameter Name="isActive" Type="bit" Mode="In" />
@@ -179,6 +190,10 @@
         <Function Name="DeleteProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductID" Type="int" Mode="In" />
           <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="DeleteStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stockID" Type="int" Mode="In" />
+          <Parameter Name="isActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="GetAllProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ModifyAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -201,6 +216,10 @@
           <Parameter Name="IsActive" Type="bit" Mode="In" />
           <Parameter Name="CategoryID" Type="int" Mode="In" />
           <Parameter Name="ProducerID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ModifyStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stockID" Type="int" Mode="In" />
+          <Parameter Name="sellingPrice" Type="decimal" Mode="In" />
         </Function>
         <EntityContainer Name="SupermarketDBModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
@@ -317,7 +336,7 @@
           <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DateOfSupply" Type="DateTime" Precision="0" />
           <Property Name="ExpirationDate" Type="DateTime" Precision="0" />
-          <Property Name="Purchase_price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="SellingPrice" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Product" Relationship="Self.fk_stock_product" FromRole="Stock" ToRole="Product" />
         </EntityType>
@@ -432,32 +451,11 @@
             <Parameter Name="isActive" Mode="In" Type="Boolean" />
             <Parameter Name="accID" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="DeleteAccount">
-            <Parameter Name="accountID" Mode="In" Type="Int32" />
-            <Parameter Name="isActive" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="ModifyAccount">
-            <Parameter Name="accountID" Mode="In" Type="Int32" />
-            <Parameter Name="username" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="String" />
-            <Parameter Name="role" Mode="In" Type="String" />
-            <Parameter Name="isActive" Mode="In" Type="Boolean" />
-          </FunctionImport>
           <FunctionImport Name="AddProducer">
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="country" Mode="In" Type="String" />
             <Parameter Name="isActive" Mode="In" Type="Boolean" />
             <Parameter Name="producerID" Mode="InOut" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="DeleteProducer">
-            <Parameter Name="producerID" Mode="In" Type="Int32" />
-            <Parameter Name="isActive" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="ModifyProducer">
-            <Parameter Name="producerID" Mode="In" Type="Int32" />
-            <Parameter Name="name" Mode="In" Type="String" />
-            <Parameter Name="country" Mode="In" Type="String" />
-            <Parameter Name="isActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="AddProduct">
             <Parameter Name="Name" Mode="In" Type="String" />
@@ -467,11 +465,47 @@
             <Parameter Name="ProducerID" Mode="In" Type="Int32" />
             <Parameter Name="ProductID" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="AddStock">
+            <Parameter Name="productID" Mode="In" Type="Int32" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+            <Parameter Name="unit" Mode="In" Type="String" />
+            <Parameter Name="supplydate" Mode="In" Type="DateTime" />
+            <Parameter Name="expirationdate" Mode="In" Type="DateTime" />
+            <Parameter Name="purchasePrice" Mode="In" Type="Decimal" />
+            <Parameter Name="sellingPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="stockid" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteAccount">
+            <Parameter Name="accountID" Mode="In" Type="Int32" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProducer">
+            <Parameter Name="producerID" Mode="In" Type="Int32" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
           <FunctionImport Name="DeleteProduct">
             <Parameter Name="ProductID" Mode="In" Type="Int32" />
             <Parameter Name="IsActive" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="DeleteStock">
+            <Parameter Name="stockID" Mode="In" Type="Int32" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
           <FunctionImport Name="GetAllProducts" ReturnType="Collection(SupermarketDBModel.GetAllProducts_Result)" />
+          <FunctionImport Name="ModifyAccount">
+            <Parameter Name="accountID" Mode="In" Type="Int32" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="String" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyProducer">
+            <Parameter Name="producerID" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="country" Mode="In" Type="String" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
           <FunctionImport Name="ModifyProduct">
             <Parameter Name="ProductID" Mode="In" Type="Int32" />
             <Parameter Name="Name" Mode="In" Type="String" />
@@ -479,6 +513,10 @@
             <Parameter Name="IsActive" Mode="In" Type="Boolean" />
             <Parameter Name="CategoryID" Mode="In" Type="Int32" />
             <Parameter Name="ProducerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyStock">
+            <Parameter Name="stockID" Mode="In" Type="Int32" />
+            <Parameter Name="sellingPrice" Mode="In" Type="Decimal" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetAllProducts_Result">
@@ -566,19 +604,19 @@
                 <ScalarProperty Name="Unit" ColumnName="Unit" />
                 <ScalarProperty Name="DateOfSupply" ColumnName="DateOfSupply" />
                 <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
-                <ScalarProperty Name="Purchase_price" ColumnName="Purchase_price" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
                 <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AddAccount" FunctionName="SupermarketDBModel.Store.AddAccount" />
-          <FunctionImportMapping FunctionImportName="DeleteAccount" FunctionName="SupermarketDBModel.Store.DeleteAccount" />
-          <FunctionImportMapping FunctionImportName="ModifyAccount" FunctionName="SupermarketDBModel.Store.ModifyAccount" />
           <FunctionImportMapping FunctionImportName="AddProducer" FunctionName="SupermarketDBModel.Store.AddProducer" />
-          <FunctionImportMapping FunctionImportName="DeleteProducer" FunctionName="SupermarketDBModel.Store.DeleteProducer" />
-          <FunctionImportMapping FunctionImportName="ModifyProducer" FunctionName="SupermarketDBModel.Store.ModifyProducer" />
           <FunctionImportMapping FunctionImportName="AddProduct" FunctionName="SupermarketDBModel.Store.AddProduct" />
+          <FunctionImportMapping FunctionImportName="AddStock" FunctionName="SupermarketDBModel.Store.AddStock" />
+          <FunctionImportMapping FunctionImportName="DeleteAccount" FunctionName="SupermarketDBModel.Store.DeleteAccount" />
+          <FunctionImportMapping FunctionImportName="DeleteProducer" FunctionName="SupermarketDBModel.Store.DeleteProducer" />
           <FunctionImportMapping FunctionImportName="DeleteProduct" FunctionName="SupermarketDBModel.Store.DeleteProduct" />
+          <FunctionImportMapping FunctionImportName="DeleteStock" FunctionName="SupermarketDBModel.Store.DeleteStock" />
           <FunctionImportMapping FunctionImportName="GetAllProducts" FunctionName="SupermarketDBModel.Store.GetAllProducts">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SupermarketDBModel.GetAllProducts_Result">
@@ -591,7 +629,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ModifyAccount" FunctionName="SupermarketDBModel.Store.ModifyAccount" />
+          <FunctionImportMapping FunctionImportName="ModifyProducer" FunctionName="SupermarketDBModel.Store.ModifyProducer" />
           <FunctionImportMapping FunctionImportName="ModifyProduct" FunctionName="SupermarketDBModel.Store.ModifyProduct" />
+          <FunctionImportMapping FunctionImportName="ModifyStock" FunctionName="SupermarketDBModel.Store.ModifyStock" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

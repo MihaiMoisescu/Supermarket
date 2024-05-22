@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Supermarket.ViewModels"
+        xmlns:helper="clr-namespace:Supermarket.Helper"
         xmlns:localConverter="clr-namespace:Supermarket.Converters"
-        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    mc:Ignorable="d"
         Title="ProductsView" Height="446" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ProductsVM/>
@@ -18,31 +20,34 @@
             <ImageBrush ImageSource="/Resources/background.png"/>
         </Grid.Background>
         <Border Background="#FF7ED957" HorizontalAlignment="Left" Height="96" Margin="19,10,0,0" VerticalAlignment="Top" Width="627" CornerRadius="20"/>
-        <Button Content="ADD" HorizontalAlignment="Left" Margin="37,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Command="{Binding AddProducer}">
-            <!--<Button.CommandParameter>
+        <Button Content="ADD" HorizontalAlignment="Left" Margin="37,30,0,0" VerticalAlignment="Top" Height="59" Width="305"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Command="{Binding AddProduct}">
+            <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource productConvert}">
                     <Binding ElementName="txtName" Path="Text"/>
-                    <Binding ElementName="txtCountry" Path="Text"/>
+                    <Binding ElementName="txtBarcode" Path="Text"/>
+                    <Binding ElementName="comboboxCategory" Path="SelectedItem.CategoryID"/>
+                    <Binding ElementName="comboboxProducers" Path="SelectedItem.ProducerID"/>
                 </MultiBinding>
-            </Button.CommandParameter>-->
+            </Button.CommandParameter>
         </Button>
 
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="454,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" RenderTransformOrigin="0.568,0.543" Command="{Binding DeleteProducer}" CommandParameter="{Binding ElementName=productGrid, Path=SelectedItem}" />
-        <Button Content="Update" HorizontalAlignment="Left" Margin="245,30,0,0" VerticalAlignment="Top" Height="59" Width="169"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Command="{Binding UpdateProducer}" CommandParameter="{Binding ElementName=productGrid, Path=SelectedItem}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="37,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74" Text="Name"/>
-        <TextBlock HorizontalAlignment="Left" Margin="37,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="74" Text="Country"/>
-        <TextBox Name="txtName" HorizontalAlignment="Left" Margin="110,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="350,30,0,0" VerticalAlignment="Top" Height="59" Width="273"  Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" RenderTransformOrigin="0.568,0.543" Command="{Binding DeleteProduct}" CommandParameter="{Binding ElementName=productGrid, Path=SelectedItem}" />
+        <TextBlock HorizontalAlignment="Left" Margin="37,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="58" Text="Name"/>
+        <TextBlock HorizontalAlignment="Left" Margin="37,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="58" Text="Barcode"/>
+        <TextBox Name="txtName" HorizontalAlignment="Left" Margin="95,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
              Text="{Binding ElementName=productGrid, Path=SelectedItem.Name,UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox Name="txtBarcode" HorizontalAlignment="Left" Margin="110,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
+        <TextBox Name="txtBarcode" HorizontalAlignment="Left" Margin="95,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
               Text="{Binding ElementName=productGrid, Path=SelectedItem.Barcode,UpdateSourceTrigger=PropertyChanged}"/>
-        <DataGrid Name="productGrid"  Margin="37,226,175,21" AutoGenerateColumns="False"
+        <DataGrid Name="productGrid"  Margin="37,226,54,21" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ProductsList}" IsReadOnly="True">
+            <i:Interaction.Behaviors>
+                <helper:UpdateProductComboboxes/>
+            </i:Interaction.Behaviors>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ProductID}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" />
-                <DataGridTextColumn Header="Category" Binding="{Binding CategoryID}" />
-                <DataGridTextColumn Header="Producer" Binding="{Binding ProducerID}" />
+                <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}" />
+                <DataGridTextColumn Header="Producer" Binding="{Binding Producer.Name}" />
                 <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}" />
 
             </DataGrid.Columns>
@@ -50,9 +55,8 @@
         <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Left" Margin="37,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="635" FontFamily="Comic Sans MS" FontSize="28" Foreground="#FFFB0A0A" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" Margin="350,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="64" Text="Category"/>
         <TextBlock HorizontalAlignment="Left" Margin="350,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="64" Text="Producer" RenderTransformOrigin="0.533,0.662"/>
-        <TextBox x:Name="txtName_Copy" HorizontalAlignment="Left" Margin="414,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
-            Text="{Binding SelectedItem.Name, ElementName=productGrid, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="txtName_Copy1" HorizontalAlignment="Left" Margin="414,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"
-            Text="{Binding SelectedItem.Name, ElementName=productGrid, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox x:Name="comboboxProducers"  HorizontalAlignment="Left" Margin="414,153,0,0" VerticalAlignment="Top" Width="222" Height="27" ItemsSource="{Binding ProducersList}" DisplayMemberPath="Name"/>
+        <ComboBox x:Name="comboboxCategory"  HorizontalAlignment="Left" Margin="414,122,0,0" VerticalAlignment="Top" Width="222" Height="27" ItemsSource="{Binding CategoryList}" DisplayMemberPath="Name" />
+
     </Grid>
 </Window>

@@ -65,6 +65,7 @@ namespace Supermarket.ViewModels
         {
             _producerBLL.DeleteProducer(obj);
             ErrorMessage = _producerBLL.ErrorMessage;
+            ProducersList=_producerBLL.GetAllProducers();
 
         }
         public ICommand DeleteProducer

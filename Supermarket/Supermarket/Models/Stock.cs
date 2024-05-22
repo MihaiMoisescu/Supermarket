@@ -21,7 +21,7 @@ namespace Supermarket.Models
         public string Unit { get; set; }
         public Nullable<System.DateTime> DateOfSupply { get; set; }
         public Nullable<System.DateTime> ExpirationDate { get; set; }
-        public Nullable<decimal> Purchase_price { get; set; }
+        public Nullable<decimal> PurchasePrice { get; set; }
         public Nullable<decimal> SellingPrice { get; set; }
     
         public virtual Product Product { get; set; }

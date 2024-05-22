@@ -16,8 +16,10 @@ namespace Supermarket.ViewModels
         private ICommand _productCommand;
         private ICommand _stockCommand;
         private ICommand _producersCommand;
+        private ICommand _moreOptionsCommand;
 
         #region Commands
+
         public void UsersInterface(object obj)
         {
             AccountsView accountsView = new AccountsView();
@@ -39,6 +41,12 @@ namespace Supermarket.ViewModels
             StocksView stocksView = new StocksView();
             stocksView.ShowDialog();
         }
+        public void MoreOptionsInterface(object obj)
+        {
+            MoreOptionsView moreOptionsView = new MoreOptionsView();
+            moreOptionsView.ShowDialog();
+        }
+
         public ICommand ProducersCommand
         {
             get
@@ -75,6 +83,15 @@ namespace Supermarket.ViewModels
                 if(_stockCommand == null)
                     _stockCommand = new RelayCommand(StocksInterface);
                 return _stockCommand;
+            }
+        }
+        public ICommand MoreOptionsCommand
+        {
+            get
+            {
+                if(_moreOptionsCommand == null)
+                    _moreOptionsCommand = new RelayCommand(MoreOptionsInterface);
+                return _moreOptionsCommand;
             }
         }
         #endregion
