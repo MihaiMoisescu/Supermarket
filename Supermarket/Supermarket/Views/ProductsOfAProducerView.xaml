@@ -6,25 +6,23 @@
         xmlns:local="clr-namespace:Supermarket.ViewModels"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors" xmlns:Helper="clr-namespace:Supermarket.Helper" x:Class="Supermarket.Views.ProductsOfAProducerView"
         mc:Ignorable="d"
-        Title="ProductsOfAProducerView" Height="450" Width="700">
+        Title="ProductsOfAProducerView" Height="450" Width="700"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ProductsProducersVM/>
     </Window.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="153*"/>
-            <ColumnDefinition Width="7*"/>
-        </Grid.ColumnDefinitions>
+
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/background.png"/>
         </Grid.Background>
+        <Border Background="#FF15DAC3" HorizontalAlignment="Left" Height="56" Margin="10,38,0,0" VerticalAlignment="Top" Width="663" CornerRadius="20"/>
         <TextBlock HorizontalAlignment="Left" Margin="24,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="64" Text="Producer" RenderTransformOrigin="-3.273,-1.614"/>
         <TextBlock HorizontalAlignment="Left" Margin="350,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="64" Text="Category" RenderTransformOrigin="-3.273,-1.614"/>
         <ComboBox x:Name="comboboxProducer" SelectedValue="{Binding ProducerIDBox}" SelectedValuePath="ProducerID" HorizontalAlignment="Left" Margin="93,53,0,0" VerticalAlignment="Top" Width="222" Height="27" ItemsSource="{Binding ProducersList}" DisplayMemberPath="Name" />
         <ComboBox x:Name="comboboxCategory" SelectedValue="{Binding CategoryIDBox}" SelectedValuePath="CategoryID" HorizontalAlignment="Left" Margin="437,53,0,0" VerticalAlignment="Top" Width="222" Height="27" ItemsSource="{Binding CategoryList}" DisplayMemberPath="Name" />
 
 
-        <DataGrid x:Name="productGrid"  Margin="180,173,180,86" AutoGenerateColumns="False"
+        <DataGrid x:Name="productGrid"  Margin="155,187,155,69" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Products}" IsReadOnly="True" Background="#FFF7F7F7" Foreground="#FF170505" BorderBrush="#FF577088">
             <b:Interaction.Behaviors>
                 <Helper:UpdateProductComboboxes/>
@@ -36,7 +34,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Command="{Binding GetProducts}" Content="Show" HorizontalAlignment="Center" Margin="0,92,0,0" VerticalAlignment="Top" Height="47" Width="236" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
+        <Button Command="{Binding GetProducts}" Content="Show" HorizontalAlignment="Center" Margin="0,116,0,0" VerticalAlignment="Top" Height="47" Width="236" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
 
 
     </Grid>

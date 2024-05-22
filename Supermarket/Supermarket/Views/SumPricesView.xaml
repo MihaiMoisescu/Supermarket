@@ -3,10 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Supermarket.Views"
+        xmlns:local="clr-namespace:Supermarket.ViewModels"
         mc:Ignorable="d"
-        Title="SumPricesView" Height="450" Width="800">
+        Title="SumPricesView" Height="300" Width="800"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:CategoryPricesVM/>
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/background.png"/>
+        </Grid.Background>
+        <Border Background="#FF15DAC3" HorizontalAlignment="Left" Height="56" Margin="38,38,0,0" VerticalAlignment="Top" Width="663" CornerRadius="20">
+        </Border>
+        <Button Command="{Binding GetSum}" Content="Show" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="210" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Margin="400,47,0,0" />
+        <ComboBox x:Name="comboboxCategory" SelectedValue="{Binding CategoryIDBox}" SelectedValuePath="CategoryID" HorizontalAlignment="Left" Margin="148,52,0,0" VerticalAlignment="Top" Width="222" Height="28" ItemsSource="{Binding CategoryList}" DisplayMemberPath="Name" RenderTransformOrigin="0.557,2.882" />
+        <TextBlock HorizontalAlignment="Left" Margin="84,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="64" Text="Category" RenderTransformOrigin="-3.273,-1.614"/>
+        <Label HorizontalAlignment="Left" Margin="84,136,0,0"  VerticalAlignment="Top" Height="29" Width="75" Content="Category " RenderTransformOrigin="-3.273,-1.614"/>
+        <Label HorizontalAlignment="Left" Margin="84,172,0,0"  VerticalAlignment="Top" Height="29" Width="75" Content="Amount" RenderTransformOrigin="-3.273,-1.614"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,141,0,0" TextWrapping="Wrap" Text="{Binding ElementName=comboboxCategory, Path=SelectedItem.Name}" VerticalAlignment="Top" Height="29" Width="169"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,174,0,0" TextWrapping="Wrap" Text="{Binding TotalPrice}" VerticalAlignment="Top" Height="29" Width="165"/>
+
     </Grid>
+
+
 </Window>

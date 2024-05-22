@@ -196,6 +196,9 @@
           <Parameter Name="isActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="GetAllProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCategoryPrices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoryID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetProductsFromProducer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="producerID" Type="int" Mode="In" />
           <Parameter Name="categoryID" Type="int" Mode="In" />
@@ -498,6 +501,9 @@
             <Parameter Name="isActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="GetAllProducts" ReturnType="Collection(SupermarketDBModel.GetAllProducts_Result)" />
+          <FunctionImport Name="GetCategoryPrices" ReturnType="Collection(SupermarketDBModel.GetCategoryPrices_Result)">
+            <Parameter Name="categoryID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="GetProductsFromProducer" ReturnType="Collection(SupermarketDBModel.GetProductsFromProducer_Result)">
             <Parameter Name="producerID" Mode="In" Type="Int32" />
             <Parameter Name="categoryID" Mode="In" Type="Int32" />
@@ -535,6 +541,10 @@
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
           <Property Type="Int32" Name="CategoryID" Nullable="false" />
           <Property Type="Int32" Name="ProducerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetCategoryPrices_Result">
+          <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="2" />
         </ComplexType>
         <ComplexType Name="GetProductsFromProducer_Result">
           <Property Type="String" Name="ProducerName" Nullable="true" MaxLength="255" />
@@ -640,6 +650,14 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="ProducerID" ColumnName="ProducerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCategoryPrices" FunctionName="SupermarketDBModel.Store.GetCategoryPrices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SupermarketDBModel.GetCategoryPrices_Result">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

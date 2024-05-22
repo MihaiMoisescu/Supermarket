@@ -82,6 +82,7 @@
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessLogicLayer\CategoryBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\CategoryPricesBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\StockBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProducerBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProductsBLL.cs" />
@@ -89,6 +90,9 @@
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetAllProducts_Result.cs">
+      <DependentUpon>SupermarketDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCategoryPrices_Result.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetProductsFromProducer_Result.cs">
@@ -124,6 +128,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SupermarketDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CategoryPricesVM.cs" />
     <Compile Include="ViewModels\MoreOperationsVM.cs" />
     <Compile Include="ViewModels\ProducersVM.cs" />
     <Compile Include="ViewModels\ProductsProducersVM.cs" />

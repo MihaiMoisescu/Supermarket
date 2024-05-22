@@ -192,6 +192,15 @@ namespace Supermarket.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllProducts_Result>("GetAllProducts");
         }
     
+        public virtual ObjectResult<GetCategoryPrices_Result> GetCategoryPrices(Nullable<int> categoryID)
+        {
+            var categoryIDParameter = categoryID.HasValue ?
+                new ObjectParameter("categoryID", categoryID) :
+                new ObjectParameter("categoryID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCategoryPrices_Result>("GetCategoryPrices", categoryIDParameter);
+        }
+    
         public virtual ObjectResult<GetProductsFromProducer_Result> GetProductsFromProducer(Nullable<int> producerID, Nullable<int> categoryID)
         {
             var producerIDParameter = producerID.HasValue ?
