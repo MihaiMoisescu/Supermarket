@@ -3,10 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Supermarket.Views"
+        xmlns:local="clr-namespace:Supermarket.ViewModels"
         mc:Ignorable="d"
-        Title="MoreOptionsView" Height="450" Width="800">
+        Title="MoreOptionsView" Height="450" Width="600"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize" >
+    <Window.DataContext>
+        <local:MoreOperationsVM/>
+    </Window.DataContext>
     <Grid>
-        
+
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/options.png"/>
+        </Grid.Background>
+        <Button Command="{Binding ProductsOfProducer}" Content="Products of a Producer" HorizontalAlignment="Center" Margin="0,127,0,0" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
+        <Button Command="{Binding UserEarnings}" Content="User's earnings" HorizontalAlignment="Center" Margin="0,247,0,0" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
+        <Button Command="{Binding SumPrices}" Content="Sum prices per category" HorizontalAlignment="Center" Margin="0,187,0,0" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24"  />
+
     </Grid>
 </Window>

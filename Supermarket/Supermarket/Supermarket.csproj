@@ -121,6 +121,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SupermarketDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MoreOperationsVM.cs" />
     <Compile Include="ViewModels\ProducersVM.cs" />
     <Compile Include="ViewModels\ProductsVM.cs" />
     <Compile Include="ViewModels\RegisterVM.cs" />
@@ -129,8 +130,14 @@
     <Compile Include="Views\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MoreOptionsView.xaml.cs">
+      <DependentUpon>MoreOptionsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProducersView.xaml.cs">
       <DependentUpon>ProducersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductsOfAProducerView.xaml.cs">
+      <DependentUpon>ProductsOfAProducerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductsView.xaml.cs">
       <DependentUpon>ProductsView.xaml</DependentUpon>
@@ -141,8 +148,14 @@
     <Compile Include="Views\StocksView.xaml.cs">
       <DependentUpon>StocksView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SumPricesView.xaml.cs">
+      <DependentUpon>SumPricesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdatePriceStockView.xaml.cs">
       <DependentUpon>UpdatePriceStockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserEarningsView.xaml.cs">
+      <DependentUpon>UserEarningsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AccountsView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -188,9 +201,17 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MoreOptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ProducersView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ProductsOfAProducerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProductsView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -204,7 +225,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\SumPricesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UpdatePriceStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserEarningsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,6 +295,7 @@
       <DependentUpon>SupermarketDB.edmx</DependentUpon>
       <LastGenOutput>SupermarketDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\options.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
