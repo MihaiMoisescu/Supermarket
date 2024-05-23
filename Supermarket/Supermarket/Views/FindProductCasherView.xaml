@@ -1,0 +1,42 @@
+﻿<Window x:Class="Supermarket.Views.FindProductCasherView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Supermarket.ViewModels"
+        mc:Ignorable="d"
+        Title="FindProductCasherView" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:SearchProductVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/background.png"/>
+        </Grid.Background>
+        <Border Background="#FF15DAC3" HorizontalAlignment="Left" Height="191" Margin="23,26,0,0" VerticalAlignment="Top" Width="377" CornerRadius="20">
+        </Border>
+        <ComboBox x:Name="comboboxProducer" SelectedValue="{Binding ProducerName}" SelectedValuePath="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="222" Height="27" ItemsSource="{Binding ProducersList}" DisplayMemberPath="Name" Margin="140,143,0,0"  IsEditable="True"/>
+        <ComboBox x:Name="comboboxCategory" SelectedValue="{Binding CategoryName}" SelectedValuePath="Name" HorizontalAlignment="Left" Margin="140,179,0,0" VerticalAlignment="Top" Width="222" Height="27" ItemsSource="{Binding CategoryList}" DisplayMemberPath="Name" IsEditable="True"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="51,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="84" Text="Barcode" RenderTransformOrigin="-3.273,-1.614"/>
+        <TextBlock HorizontalAlignment="Left" Margin="51,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="84" Text="Product Name" RenderTransformOrigin="-3.273,-1.614"/>
+        <TextBlock HorizontalAlignment="Left" Margin="51,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="84" RenderTransformOrigin="-3.273,-1.614"><Run Text="Expiration Date"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="51,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="84" RenderTransformOrigin="-3.273,-1.614" Text="Producer Name"/>
+        <TextBlock HorizontalAlignment="Left" Margin="51,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="84" RenderTransformOrigin="-3.273,-1.614" Text="Category Name"/>
+        <TextBox Text="{Binding ProductName}" HorizontalAlignment="Left" Margin="140,39,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="222" Height="27"/>
+        <TextBox Text="{Binding Barcode}" HorizontalAlignment="Left" Margin="140,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"/>
+        <DataGrid Name="producerGrid"  Margin="37,226,259,21" AutoGenerateColumns="False"
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding SearchResults}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}" />
+                <DataGridTextColumn Header="Producer Name" Binding="{Binding ProducerName}" />
+                <DataGridTextColumn Header="Category Name" Binding="{Binding CategoryName}" />
+                <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" />
+                <DataGridTextColumn Header="Expiration Date" Binding="{Binding ExpirationDate}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Command="{Binding SearchCommand}" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Margin="415,94,0,0" />
+        <TextBox Text="{Binding ExpirationDate }" HorizontalAlignment="Left" Margin="140,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="27"/>
+
+    </Grid>
+</Window>

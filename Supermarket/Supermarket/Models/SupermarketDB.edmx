@@ -228,6 +228,13 @@
           <Parameter Name="stockID" Type="int" Mode="In" />
           <Parameter Name="sellingPrice" Type="decimal" Mode="In" />
         </Function>
+        <Function Name="SearchProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productName" Type="varchar" Mode="In" />
+          <Parameter Name="barcode" Type="varchar" Mode="In" />
+          <Parameter Name="expirationDate" Type="date" Mode="In" />
+          <Parameter Name="producerName" Type="varchar" Mode="In" />
+          <Parameter Name="categoryName" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="SupermarketDBModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -533,6 +540,13 @@
             <Parameter Name="stockID" Mode="In" Type="Int32" />
             <Parameter Name="sellingPrice" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="SearchProduct" ReturnType="Collection(SupermarketDBModel.SearchProduct_Result)">
+            <Parameter Name="productName" Mode="In" Type="String" />
+            <Parameter Name="barcode" Mode="In" Type="String" />
+            <Parameter Name="expirationDate" Mode="In" Type="DateTime" />
+            <Parameter Name="producerName" Mode="In" Type="String" />
+            <Parameter Name="categoryName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetAllProducts_Result">
           <Property Type="Int32" Name="ProductID" Nullable="false" />
@@ -550,6 +564,13 @@
           <Property Type="String" Name="ProducerName" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="ProductName" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SearchProduct_Result">
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Barcode" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ExpirationDate" Nullable="true" />
+          <Property Type="String" Name="ProducerName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -674,6 +695,17 @@
           <FunctionImportMapping FunctionImportName="ModifyProducer" FunctionName="SupermarketDBModel.Store.ModifyProducer" />
           <FunctionImportMapping FunctionImportName="ModifyProduct" FunctionName="SupermarketDBModel.Store.ModifyProduct" />
           <FunctionImportMapping FunctionImportName="ModifyStock" FunctionName="SupermarketDBModel.Store.ModifyStock" />
+          <FunctionImportMapping FunctionImportName="SearchProduct" FunctionName="SupermarketDBModel.Store.SearchProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SupermarketDBModel.SearchProduct_Result">
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="ProducerName" ColumnName="ProducerName" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

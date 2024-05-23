@@ -50,7 +50,6 @@ namespace Supermarket.Models
                 context.Accounts.Add(account);
                 context.SaveChanges();
                 account.AccountID=context.Accounts.Max(a => a.AccountID);
-                AccountsList.Add(account);
             }
         }
         public void UpdateAccount(object obj)

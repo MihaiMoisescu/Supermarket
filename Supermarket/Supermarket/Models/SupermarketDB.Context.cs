@@ -301,5 +301,30 @@ namespace Supermarket.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyStock", stockIDParameter, sellingPriceParameter);
         }
+    
+        public virtual ObjectResult<SearchProduct_Result> SearchProduct(string productName, string barcode, Nullable<System.DateTime> expirationDate, string producerName, string categoryName)
+        {
+            var productNameParameter = productName != null ?
+                new ObjectParameter("productName", productName) :
+                new ObjectParameter("productName", typeof(string));
+    
+            var barcodeParameter = barcode != null ?
+                new ObjectParameter("barcode", barcode) :
+                new ObjectParameter("barcode", typeof(string));
+    
+            var expirationDateParameter = expirationDate.HasValue ?
+                new ObjectParameter("expirationDate", expirationDate) :
+                new ObjectParameter("expirationDate", typeof(System.DateTime));
+    
+            var producerNameParameter = producerName != null ?
+                new ObjectParameter("producerName", producerName) :
+                new ObjectParameter("producerName", typeof(string));
+    
+            var categoryNameParameter = categoryName != null ?
+                new ObjectParameter("categoryName", categoryName) :
+                new ObjectParameter("categoryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchProduct_Result>("SearchProduct", productNameParameter, barcodeParameter, expirationDateParameter, producerNameParameter, categoryNameParameter);
+        }
     }
 }

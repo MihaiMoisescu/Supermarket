@@ -3,10 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Supermarket.Views"
+        xmlns:local="clr-namespace:Supermarket.ViewModels"
         mc:Ignorable="d"
-        Title="CasherView" Height="450" Width="800">
+        Title="CasherView" Height="450" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:CasherVM/>
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/casher.png" Stretch="Fill" TileMode="Tile"/>
+        </Grid.Background>
+        <Button Command="{Binding SearchCommand}" Content="Find a product" HorizontalAlignment="Center" Margin="0,119,0,0" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
+        <Button Command="{Binding MakeReceiptCommand}" Content="Make a receipt" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
+
     </Grid>
 </Window>

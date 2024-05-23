@@ -13,6 +13,7 @@ namespace Supermarket.Models.BusinessLogicLayer
     {
         private SupermarketDBEntities context;
 
+        
         public string ErrorMessage { get; set; }
         public StockBLL()
         {
@@ -90,5 +91,6 @@ namespace Supermarket.Models.BusinessLogicLayer
                 }
             }
         }
+       
     }
 }

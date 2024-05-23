@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="Models\BusinessLogicLayer\CategoryBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\CategoryPricesBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\SearchProductsBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\StockBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProducerBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProductsBLL.cs" />
@@ -110,6 +111,9 @@
     <Compile Include="Models\ReceiptItem.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchProduct_Result.cs">
+      <DependentUpon>SupermarketDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Stock.cs">
       <DependentUpon>SupermarketDB.tt</DependentUpon>
     </Compile>
@@ -128,16 +132,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SupermarketDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CasherVM.cs" />
     <Compile Include="ViewModels\CategoryPricesVM.cs" />
     <Compile Include="ViewModels\MoreOperationsVM.cs" />
     <Compile Include="ViewModels\ProducersVM.cs" />
     <Compile Include="ViewModels\ProductsProducersVM.cs" />
     <Compile Include="ViewModels\ProductsVM.cs" />
     <Compile Include="ViewModels\RegisterVM.cs" />
+    <Compile Include="ViewModels\SearchProductVM.cs" />
     <Compile Include="ViewModels\StocksVM.cs" />
     <Compile Include="ViewModels\UpdatePriceStockVM.cs" />
     <Compile Include="Views\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FindProductCasherView.xaml.cs">
+      <DependentUpon>FindProductCasherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MakeReceiptCasherView.xaml.cs">
+      <DependentUpon>MakeReceiptCasherView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MoreOptionsView.xaml.cs">
       <DependentUpon>MoreOptionsView.xaml</DependentUpon>
@@ -178,6 +190,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FindProductCasherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +226,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MakeReceiptCasherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MoreOptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -295,6 +315,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\casher.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\SupermarketDB.Context.tt">
