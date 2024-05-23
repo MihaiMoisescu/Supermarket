@@ -13,6 +13,7 @@ namespace Supermarket.ViewModels
     {
         private ICommand _searchCommand;
         private ICommand _makeReceiptCommand;
+        private ICommand _viewReceiptCommand;
 
         public void SearchInterface(object obj)
         {
@@ -30,8 +31,8 @@ namespace Supermarket.ViewModels
         }
         public void MakeReceiptInterface(object obj)
         {
-            MakeReceiptCasherView makeReceiptCasherView = new MakeReceiptCasherView();
-            makeReceiptCasherView.ShowDialog();
+            AddReceiptView addReceiptView = new AddReceiptView();
+            addReceiptView.ShowDialog();
         }
         public ICommand MakeReceiptCommand
         {
@@ -40,6 +41,20 @@ namespace Supermarket.ViewModels
                 if (_makeReceiptCommand == null)
                     _makeReceiptCommand = new RelayCommand(MakeReceiptInterface);
                 return _makeReceiptCommand ;
+            }
+        }
+        public void ViewReceiptCasherInterface(object obj)
+        {
+            ViewReceiptCahserView viewReceipt=new ViewReceiptCahserView();
+            viewReceipt.ShowDialog();
+        }
+        public ICommand ViewReceipt
+        {
+            get
+            {
+                if (_viewReceiptCommand == null)
+                    _viewReceiptCommand = new RelayCommand(ViewReceiptCasherInterface);
+                return _viewReceiptCommand;
             }
         }
     }

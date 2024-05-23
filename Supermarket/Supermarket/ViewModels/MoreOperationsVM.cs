@@ -27,8 +27,8 @@ namespace Supermarket.ViewModels
         }
         public void userEarnings(object obj)
         {
-            UserEarningsView user=new UserEarningsView();
-            user.ShowDialog();
+            CahserReportView cahserReport = new CahserReportView();
+            cahserReport.ShowDialog();
         }
 
         public ICommand ProductsOfProducer

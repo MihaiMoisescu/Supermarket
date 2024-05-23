@@ -1,0 +1,56 @@
+﻿<Window x:Class="Supermarket.Views.ViewReceiptCahserView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Supermarket.ViewModels"
+        mc:Ignorable="d"
+        Title="ViewReceiptCahserView" Height="619" Width="543" WindowStartupLocation="CenterScreen" >
+    <Window.DataContext>
+        <local:ViewReceiptCasherVM/>
+    </Window.DataContext>
+    <Grid Margin="0,0,0,-6">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/background.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <ComboBox x:Name="comboboxProduct" DisplayMemberPath="ReceiptID" SelectedValue="{Binding ReceiptID}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="67" Height="27" ItemsSource="{Binding Receipts}" Margin="123,34,0,0"  SelectedValuePath="ReceiptID" IsEditable="False"/>
+        <TextBlock HorizontalAlignment="Left" Margin="72,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="46" RenderTransformOrigin="-3.273,-1.614" Text="Receipt"/>
+        <DataGrid ItemsSource="{Binding ReceiptItems}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" BorderThickness="0" Margin="59,87,66,156" GridLinesVisibility="None">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontSize" Value="12"/>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Padding" Value="10"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Cantitate" Binding="{Binding Quantity}" Width="Auto" />
+                <DataGridTextColumn Header="Nume Produs" Binding="{Binding Product.Name}" Width="*" />
+                <DataGridTextColumn Header="Pret total" Binding="{Binding Subtotal}" Width="Auto" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Command="{Binding GetCommand}" Content="Get receipt" HorizontalAlignment="Left" Margin="202,27,0,0" VerticalAlignment="Top" Height="39" Width="204" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24"/>
+
+        <TextBlock TextWrapping="Wrap" Text="{Binding ReceiptDate}" Margin="59,401,395,154" RenderTransformOrigin="-1.152,3.635"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding TotalPrice}" Margin="393,401,66,162" RenderTransformOrigin="0.661,1.161"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding CahserName}" Margin="230,401,229,162" RenderTransformOrigin="0.661,1.161"/>
+
+    </Grid>
+</Window>

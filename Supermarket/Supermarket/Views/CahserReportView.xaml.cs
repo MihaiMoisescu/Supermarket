@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Supermarket.Views
 {
     /// <summary>
-    /// Interaction logic for MakeReceiptCasherView.xaml
+    /// Interaction logic for CahserReportView.xaml
     /// </summary>
-    public partial class MakeReceiptCasherView : Window
+    public partial class CahserReportView : Window
     {
-        public MakeReceiptCasherView()
+        public CahserReportView()
         {
             InitializeComponent();
         }

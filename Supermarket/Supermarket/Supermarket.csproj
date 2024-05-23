@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="Models\BusinessLogicLayer\CategoryBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\CategoryPricesBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ReceiptItemsBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\SearchProductsBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\StockBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProducerBLL.cs" />
@@ -132,6 +133,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SupermarketDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddReceiptVM.cs" />
     <Compile Include="ViewModels\CasherVM.cs" />
     <Compile Include="ViewModels\CategoryPricesVM.cs" />
     <Compile Include="ViewModels\MoreOperationsVM.cs" />
@@ -142,14 +144,18 @@
     <Compile Include="ViewModels\SearchProductVM.cs" />
     <Compile Include="ViewModels\StocksVM.cs" />
     <Compile Include="ViewModels\UpdatePriceStockVM.cs" />
+    <Compile Include="ViewModels\ViewReceiptCasherVM.cs" />
     <Compile Include="Views\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddReceiptView.xaml.cs">
+      <DependentUpon>AddReceiptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CahserReportView.xaml.cs">
+      <DependentUpon>CahserReportView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FindProductCasherView.xaml.cs">
       <DependentUpon>FindProductCasherView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MakeReceiptCasherView.xaml.cs">
-      <DependentUpon>MakeReceiptCasherView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MoreOptionsView.xaml.cs">
       <DependentUpon>MoreOptionsView.xaml</DependentUpon>
@@ -175,14 +181,22 @@
     <Compile Include="Views\UpdatePriceStockView.xaml.cs">
       <DependentUpon>UpdatePriceStockView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserEarningsView.xaml.cs">
-      <DependentUpon>UserEarningsView.xaml</DependentUpon>
+    <Compile Include="Views\ViewReceiptCahserView.xaml.cs">
+      <DependentUpon>ViewReceiptCahserView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AccountsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AddReceiptView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AdministratorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CahserReportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,10 +240,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\MakeReceiptCasherView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MoreOptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -262,7 +272,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserEarningsView.xaml">
+    <Page Include="Views\ViewReceiptCahserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

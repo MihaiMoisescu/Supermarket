@@ -15,6 +15,7 @@
         </Grid.Background>
         <Button Command="{Binding SearchCommand}" Content="Find a product" HorizontalAlignment="Center" Margin="0,119,0,0" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
         <Button Command="{Binding MakeReceiptCommand}" Content="Make a receipt" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
+        <Button Command="{Binding ViewReceipt}" Content="View a Receipt" HorizontalAlignment="Center" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" Margin="0,237,0,0" RenderTransformOrigin="0.526,0.271" />
 
     </Grid>
 </Window>

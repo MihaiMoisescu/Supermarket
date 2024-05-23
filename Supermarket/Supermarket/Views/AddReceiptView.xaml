@@ -1,0 +1,39 @@
+﻿<Window x:Class="Supermarket.Views.AddReceiptView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Supermarket.ViewModels"
+        mc:Ignorable="d"
+        Title="AddReceiptView" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:AddReceiptVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/background.png"/>
+        </Grid.Background>
+        <Border Background="#FF15DAC3" HorizontalAlignment="Left" Height="90" Margin="26,10,0,0" VerticalAlignment="Top" Width="361" CornerRadius="20"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="42,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="84" Text="Product Name" RenderTransformOrigin="-3.273,-1.614"/>
+        <ComboBox x:Name="comboboxProduct" SelectedValue="{Binding SelectedProduct}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="222" Height="27" ItemsSource="{Binding Products}" DisplayMemberPath="Name" Margin="131,23,0,0"  IsEditable="False"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="84" Text="Quantity" RenderTransformOrigin="-3.273,-1.614"/>
+        <TextBox Text="{Binding Quantity}" HorizontalAlignment="Left" Margin="131,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Height="27"/>
+        <ComboBox x:Name="comboboxUsers" DisplayMemberPath="Username" SelectedValue="{Binding AccountID}" SelectedValuePath="AccountID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Height="28" ItemsSource="{Binding CasherAccounts}" Margin="552,19,0,0"  IsEditable="False" RenderTransformOrigin="1.552,0.557" />
+        <TextBlock HorizontalAlignment="Left" Margin="504,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="43" Text="Cahser" RenderTransformOrigin="-3.273,-1.614"/>
+        <Button Command="{Binding AddProductOnReceipt}" Content="ADD" HorizontalAlignment="Left" Margin="225,53,0,0" VerticalAlignment="Top" Height="32" Width="86" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
+        <DataGrid x:Name="producerGrid"  Margin="26,124,447,90" AutoGenerateColumns="False"
+            ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ReceiptItems}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Subtotal}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock HorizontalAlignment="Left" Margin="430,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="44" Text="Total:" RenderTransformOrigin="-3.273,-1.614" FontSize="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="479,204,0,0" TextWrapping="Wrap" Text="{Binding TotalPrice}" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.49,0.127"/>
+        <TextBlock HorizontalAlignment="Left" Margin="565,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="44" Text="$" RenderTransformOrigin="-3.273,-1.614" FontSize="18"/>
+        <Button Command="{Binding MakeReceipt}" Content="Make Receipt" HorizontalAlignment="Left" Margin="504,361,0,0" VerticalAlignment="Top" Height="47" Width="236" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24"  />
+
+    </Grid>
+</Window>
