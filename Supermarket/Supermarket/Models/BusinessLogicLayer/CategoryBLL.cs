@@ -28,5 +28,28 @@ namespace Supermarket.Models.BusinessLogicLayer
             return results;
         }
 
+        public void AddCategory(string category)
+        {
+            if(!string.IsNullOrEmpty(category))
+            {
+                Category cat = new Category
+                {
+                    Name = category
+                };
+                context.Categories.Add(cat);
+                cat.CategoryID=context.Categories.Max(c => c.CategoryID);
+                CategoryList.Add(cat);
+            }
+        }
+        public void ModifyCategory(int ID,string newCategoryName)
+        {
+            if(ID>0&&!string.IsNullOrEmpty(newCategoryName)) { 
+                context.Categories.Where(o=>o.CategoryID==ID).FirstOrDefault().Name=newCategoryName;
+                context.SaveChanges();
+            }
+        }
+
+
+
     }
 }

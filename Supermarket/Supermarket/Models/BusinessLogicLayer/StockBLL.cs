@@ -88,7 +88,7 @@ namespace Supermarket.Models.BusinessLogicLayer
                     context.ModifyStock(stock.StockID,stock.SellingPrice);
                     context.SaveChanges() ;
                     StocksList.FirstOrDefault(o=>o.StockID==stock.StockID).SellingPrice = stock.SellingPrice;
-                    MessageBox.Show("Update succesfully!", "Update", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show("Update succesfully!", "Update", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }
