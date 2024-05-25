@@ -57,14 +57,30 @@ namespace Supermarket.ViewModels
 
         public void Register(object obj)
         {
-            if(_accountBLL.CheckUsername(Username)!=null) 
+            if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(Role))
             {
-                MessageBox.Show("Username already exists.", "Register", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (_accountBLL.CheckUsername(Username) != null)
+                {
+                    MessageBox.Show("Username already exists.", "Register", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    if (Role == "Administrator" || Role == "Casier")
+                    {
+                        _accountBLL.AddMethod(Username, Password, Role);
+                        MessageBox.Show("Register successfully", "Register", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Role Inncorect.", "Register", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    }
+                }
             }
             else
             {
-                _accountBLL.AddMethod(Username, Password, Role);
-                MessageBox.Show("Register successfully", "Register", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Enter username and password.", "Register", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
 
         }

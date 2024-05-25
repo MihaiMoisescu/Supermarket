@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Supermarket.Views
 {
     /// <summary>
-    /// Interaction logic for CahserReportView.xaml
+    /// Interaction logic for HighestPriceReceiptView.xaml
     /// </summary>
-    public partial class CahserReportView : Window
+    public partial class HighestPriceReceiptView : Window
     {
-        public CahserReportView()
+        public HighestPriceReceiptView()
         {
             InitializeComponent();
         }

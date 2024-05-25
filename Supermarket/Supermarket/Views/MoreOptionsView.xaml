@@ -15,7 +15,7 @@
             <ImageBrush ImageSource="/Resources/options.png"/>
         </Grid.Background>
         <Button Command="{Binding ProductsOfProducer}" Content="Products of a Producer" HorizontalAlignment="Center" Margin="0,127,0,0" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
-        <Button Command="{Binding UserEarnings}" Content="User's earnings" HorizontalAlignment="Center" Margin="0,247,0,0" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
+        <Button Command="{Binding UserEarnings}" Content="Highest Price Receipt" HorizontalAlignment="Center" Margin="0,247,0,0" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24" />
         <Button Command="{Binding SumPrices}" Content="Sum prices per category" HorizontalAlignment="Center" Margin="0,187,0,0" VerticalAlignment="Top" Height="55" Width="256" Background="#FF129FA7" BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC" FontSize="24"  />
 
     </Grid>

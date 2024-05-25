@@ -38,6 +38,7 @@
         <DataGrid Name="stockGrid" Margin="29,239,107,10" ItemsSource="{Binding StocksList}" AutoGenerateColumns="False" IsReadOnly="True"
                   ScrollViewer.VerticalScrollBarVisibility="Visible">
             <i:Interaction.Behaviors>
+                <helper:DataGridUnselectAllBehavior/>
                 <helper:UpdateStocksComboboxes/>
             </i:Interaction.Behaviors>
             <DataGrid.Columns>

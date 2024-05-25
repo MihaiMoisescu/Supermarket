@@ -25,6 +25,5 @@ namespace Supermarket.Models.BusinessLogicLayer
             }
             return receipts;
         }
-
     }
 }

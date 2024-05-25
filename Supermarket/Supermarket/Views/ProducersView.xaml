@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Supermarket.ViewModels"
+        xmlns:helper="clr-namespace:Supermarket.Helper"
         xmlns:localConverter="clr-namespace:Supermarket.Converters"
-
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="ProducersView" Height="446" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.DataContext>
@@ -38,6 +39,9 @@
               Text="{Binding ElementName=producerGrid, Path=SelectedItem.Country,UpdateSourceTrigger=PropertyChanged}"/>
         <DataGrid Name="producerGrid"  Margin="37,226,259,21" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ProducersList}" IsReadOnly="True">
+            <i:Interaction.Behaviors>
+                <helper:DataGridUnselectAllBehavior/>
+            </i:Interaction.Behaviors>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ProducerID}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />

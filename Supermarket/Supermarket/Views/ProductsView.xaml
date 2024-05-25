@@ -42,6 +42,7 @@
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ProductsList}" IsReadOnly="True">
             <i:Interaction.Behaviors>
                 <helper:UpdateProductComboboxes/>
+                <helper:DataGridUnselectAllBehavior/>
             </i:Interaction.Behaviors>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />

@@ -6,6 +6,7 @@ using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Supermarket.Models.BusinessLogicLayer
 {
@@ -87,7 +88,7 @@ namespace Supermarket.Models.BusinessLogicLayer
                     context.ModifyStock(stock.StockID,stock.SellingPrice);
                     context.SaveChanges() ;
                     StocksList.FirstOrDefault(o=>o.StockID==stock.StockID).SellingPrice = stock.SellingPrice;
-                    ErrorMessage = "";
+                    MessageBox.Show("Update succesfully!", "Update", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
         }

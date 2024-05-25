@@ -75,6 +75,7 @@
     <Compile Include="Converters\ProducerConvert.cs" />
     <Compile Include="Converters\ProductConvert.cs" />
     <Compile Include="Converters\StockConvert.cs" />
+    <Compile Include="Helper\DataGridUnselectAllBehavior.cs" />
     <Compile Include="Helper\Functions.cs" />
     <Compile Include="Helper\UpdateProductComboboxes.cs" />
     <Compile Include="Helper\UpdateStocksComboboxes.cs" />
@@ -83,6 +84,7 @@
     </Compile>
     <Compile Include="Models\BusinessLogicLayer\CategoryBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\CategoryPricesBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ReceiptBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ReceiptItemsBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\SearchProductsBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\StockBLL.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="ViewModels\AddReceiptVM.cs" />
     <Compile Include="ViewModels\CasherVM.cs" />
     <Compile Include="ViewModels\CategoryPricesVM.cs" />
+    <Compile Include="ViewModels\HighestReceiptVM.cs" />
     <Compile Include="ViewModels\MoreOperationsVM.cs" />
     <Compile Include="ViewModels\ProducersVM.cs" />
     <Compile Include="ViewModels\ProductsProducersVM.cs" />
@@ -151,11 +154,11 @@
     <Compile Include="Views\AddReceiptView.xaml.cs">
       <DependentUpon>AddReceiptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CahserReportView.xaml.cs">
-      <DependentUpon>CahserReportView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\FindProductCasherView.xaml.cs">
       <DependentUpon>FindProductCasherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HighestPriceReceiptView.xaml.cs">
+      <DependentUpon>HighestPriceReceiptView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MoreOptionsView.xaml.cs">
       <DependentUpon>MoreOptionsView.xaml</DependentUpon>
@@ -196,15 +199,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CahserReportView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\CasherView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FindProductCasherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HighestPriceReceiptView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

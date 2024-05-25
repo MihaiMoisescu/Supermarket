@@ -25,10 +25,10 @@ namespace Supermarket.ViewModels
             SumPricesView sumPricesView = new SumPricesView();
             sumPricesView.ShowDialog();
         }
-        public void userEarnings(object obj)
+        public void HighestReceipt(object obj)
         {
-            CahserReportView cahserReport = new CahserReportView();
-            cahserReport.ShowDialog();
+            HighestPriceReceiptView highestReceipt = new HighestPriceReceiptView();
+            highestReceipt.ShowDialog();
         }
 
         public ICommand ProductsOfProducer
@@ -60,7 +60,7 @@ namespace Supermarket.ViewModels
             {
                 if(_userEarnings == null)
                 {
-                    _userEarnings=new RelayCommand(userEarnings);
+                    _userEarnings=new RelayCommand(HighestReceipt);
                 }
                 return _userEarnings;
             }
